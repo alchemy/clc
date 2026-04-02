@@ -9,8 +9,8 @@ import (
 
 // Format defines the interface for a configuration file codec.
 type Format interface {
-	Decode(r io.Reader) (map[string]any, error)
-	Encode(w io.Writer, data map[string]any) error
+	Decode(r io.Reader) (*Document, error)
+	Encode(w io.Writer, doc *Document) error
 }
 
 var (

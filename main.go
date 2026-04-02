@@ -69,7 +69,7 @@ func main() {
 		fatal("%v", err)
 	}
 
-	data, err := decoder.Decode(r)
+	doc, err := decoder.Decode(r)
 	if err != nil {
 		fatal("decode %s: %v", from, err)
 	}
@@ -84,7 +84,7 @@ func main() {
 		w = f
 	}
 
-	if err := encoder.Encode(w, data); err != nil {
+	if err := encoder.Encode(w, doc); err != nil {
 		fatal("encode %s: %v", to, err)
 	}
 }
