@@ -1,24 +1,22 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"io"
 	"os"
 	"sort"
 	"strings"
 
+	flag "github.com/spf13/pflag"
+
 	"github.com/alchemy/clc/format"
 )
 
 func main() {
 	var from, to, output string
-	flag.StringVar(&from, "from", "", "source format (auto-detected from file extension if omitted)")
-	flag.StringVar(&from, "f", "", "source format (shorthand)")
-	flag.StringVar(&to, "to", "", "target format (required)")
-	flag.StringVar(&to, "t", "", "target format (shorthand)")
-	flag.StringVar(&output, "output", "", "output file (default: stdout)")
-	flag.StringVar(&output, "o", "", "output file (shorthand)")
+	flag.StringVarP(&from, "from", "f", "", "source format (auto-detected from file extension if omitted)")
+	flag.StringVarP(&to, "to", "t", "", "target format (required)")
+	flag.StringVarP(&output, "output", "o", "", "output file (default: stdout)")
 
 	flag.Usage = func() {
 		names := format.Names()
