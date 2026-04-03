@@ -121,7 +121,8 @@ func extractTOMLComments(raw []byte) (comments map[string]Comment, header, foote
 
 		// Comment line.
 		if trimmed[0] == '#' {
-			text := strings.TrimSpace(trimmed[1:])
+			text := strings.TrimLeft(trimmed, "#")
+			text = strings.TrimSpace(text)
 			pending = append(pending, text)
 			continue
 		}
@@ -263,7 +264,9 @@ func extractTOMLInlineComment(valuePart string) string {
 			continue
 		}
 		if ch == '#' {
-			return strings.TrimSpace(s[i+1:])
+			rest := s[i:]
+			rest = strings.TrimLeft(rest, "#")
+			return strings.TrimSpace(rest)
 		}
 	}
 	return ""

@@ -125,8 +125,8 @@ func cleanINIComment(s string) string {
 	lines := strings.Split(s, "\n")
 	for i, line := range lines {
 		line = strings.TrimSpace(line)
-		line = strings.TrimPrefix(line, "#")
-		line = strings.TrimPrefix(line, ";")
+		line = strings.TrimLeft(line, "#")
+		line = strings.TrimLeft(line, ";")
 		if len(line) > 0 && line[0] == ' ' {
 			line = line[1:]
 		}
